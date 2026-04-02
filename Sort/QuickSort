@@ -1,0 +1,25 @@
+#include<iostream>
+using namespace std;
+void quickSort(int a[], int left, int right)
+{
+	if (left >= right) return;
+	int i = left;
+	int j = right;
+	int pivot = a[left];
+	while (i < j)
+	{
+		while (i < j && a[j] >= pivot)
+		{
+			a[i] = a[j];
+			j--;
+		}
+		while (i < j && a[i] <= pivot)
+		{
+			a[j] = a[i];
+			i++;
+		}
+	}
+	a[i] = pivot;
+	quickSort(a, left, i - 1);
+	quickSort(a, i + 1, right);
+}
