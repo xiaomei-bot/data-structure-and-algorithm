@@ -1,5 +1,4 @@
 #include<iostream>
-#include<span>
 using namespace std;
 void SelectSort(int a[], int n)
 {
