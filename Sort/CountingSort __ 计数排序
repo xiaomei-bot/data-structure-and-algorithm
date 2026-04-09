@@ -1,0 +1,41 @@
+#include<iostream>
+#include<vector>
+#include<climits>
+using namespace std;
+void CountingSort(vector<int>&a)
+{
+	if (a.empty())return;
+	int ma = INT_MIN;
+	int mi = INT_MAX;
+	for (int num : a)
+	{
+		if (num < mi)mi = num;
+		if (num > ma)ma = num;
+	}
+	int offset = mi;
+	int len = ma - mi + 1;
+	vector<int>cnt(len, 0);
+	for (int num : a)
+	{
+		cnt[num - offset]++;
+	}
+	int idx = 0;
+	for (int i = 0; i < len; i++)
+	{
+		while (cnt[i] > 0)
+		{
+			a[idx++] = i + offset;
+			cnt[i]--;
+		}
+	}
+}
+int main()
+{
+	int n;
+	cin >> n;
+	vector<int>a(n);
+	for (int i = 0; i < n; i++) cin >> a[i];
+	CountingSort(a);
+	for (int i = 0; i < n; i++) cout << a[i] << ' ';
+	return 0;
+}
